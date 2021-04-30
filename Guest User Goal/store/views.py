@@ -34,6 +34,8 @@ class EmailVerifyAPiView(GenericAPIView):
    
     permission_classes = ()
     authentication_classes = ()
+	serializer_class = CustomerSerializer
+
     def post(self, request, *args, **kwags):
 	    student = StudentForm()
 	    return render(request, "store/email_verify.html", {'form': student})
@@ -50,6 +52,8 @@ class CartAPiView(GenericAPIView):
 
     permission_classes = ()
     authentication_classes = ()
+	serializer_class = CustomerSerializer
+
     def post(self, request, *args, **kwags):
 	    data = cartData(request)
 	    cartItems = data['cartItems']
@@ -62,7 +66,7 @@ class MyOrdersApiView(GenericAPIView):
 
 	permission_classes = ()
 	authentication_classes = ()
-
+    serializer_class = CustomerSerializer
 	def post(self, request, *args, **kwags):
 		if request.user == "AnonymousUser":
 			print("AnonymousUser")
@@ -97,7 +101,7 @@ class CheckoutApiView(GenericAPIView):
    
 	permission_classes = ()
 	authentication_classes = ()
-
+	serializer_class = CustomerSerializer
 	def post(self, request, *args, **kwags):
 		data = cartData(request)
 
@@ -113,7 +117,7 @@ class UpdateItemApiView(GenericAPIView):
 	
 	permission_classes = ()
 	authentication_classes = ()
-
+	serializer_class = CustomerSerializer
 	def post(self, request, *args, **kwags):
 		data = json.loads(request.body)
 		productId = data['productId']
@@ -143,7 +147,7 @@ class ProcessOrderApiView(GenericAPIView):
 	
 	permission_classes = ()
 	authentication_classes = ()
-
+	serializer_class = CustomerSerializer
 	def post(self, request, *args, **kwags):
 		transaction_id = datetime.datetime.now().timestamp()
 		data = json.loads(request.body)
